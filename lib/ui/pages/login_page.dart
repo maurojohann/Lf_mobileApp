@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_app/routes/app_routes.dart';
 import 'package:mobile_app/ui/bloc/login_bloc.dart';
-
-import 'second_pge.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -12,8 +11,7 @@ class LoginPage extends StatelessWidget {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginLoadedState) {
-          return Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => SecondPage()));
+          return Navigator.of(context).pushNamed(AppRoutes.VEHICLE_DETAIL);
         }
       },
       child: Scaffold(

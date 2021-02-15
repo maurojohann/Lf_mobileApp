@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_app/routes/app_routes.dart';
+import 'package:mobile_app/ui/pages/second_pge.dart';
 
 import 'ui/bloc/login_bloc.dart';
 import 'ui/pages/login_page.dart';
@@ -47,6 +49,10 @@ class MyApp extends StatelessWidget {
         create: (context) => LoginBloc(),
         child: LoginPage(),
       ),
+      routes: {
+        //AppRoutes.AUTH_HOME: (ctx) => LoginPage(),
+        AppRoutes.VEHICLE_DETAIL: (ctx) => SecondPage(),
+      },
     );
   }
 }
