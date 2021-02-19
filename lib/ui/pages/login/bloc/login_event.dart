@@ -1,7 +1,10 @@
 part of 'login_bloc.dart';
 
 @immutable
-abstract class LoginEvent {}
+abstract class LoginEvent extends Equatable {
+  @override
+  List<Object> get props => [];
+}
 
 class DoLogingEvent extends LoginEvent {
   final String username;
@@ -11,4 +14,7 @@ class DoLogingEvent extends LoginEvent {
     this.username,
     this.password,
   });
+
+  @override
+  List<Object> get props => [username, password];
 }

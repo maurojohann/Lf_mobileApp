@@ -1,4 +1,4 @@
 class AppRoutes {
-  static const AUTH_HOME = '/';
+  static const LOGIN_HOME = '/login_page';
   static const VEHICLE_DETAIL = '/vehicle_detail';
 }

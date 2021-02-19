@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_app/routes/app_routes.dart';
-import 'package:mobile_app/ui/pages/second_pge.dart';
 
-import 'ui/bloc/login_bloc.dart';
-import 'ui/pages/login_page.dart';
+import 'package:get_it/get_it.dart';
+
+import 'package:mobile_app/routes/app_routes.dart';
+import 'package:mobile_app/ui/models/auth_token.dart';
+import 'package:mobile_app/ui/pages/Vehicles/vehicles_page.dart';
+
+import 'ui/models/vehicles.dart';
+import 'ui/pages/login/bloc/login_bloc.dart';
+import 'ui/pages/landing/bloc/landing_bloc.dart';
+import 'ui/pages/landing/landing_page.dart';
+import 'ui/pages/login/login_page.dart';
+import 'ui/repository/vehicles_repository.dart';
 
 void main() {
+  GetIt getIt = GetIt.I;
+  getIt.registerSingleton<VehiclesRepository>(VehiclesRepository());
+  getIt.registerFactory<LoginBloc>(
+      () => LoginBloc(getIt.get<VehiclesRepository>()));
+  getIt.registerFactory<LandingBloc>(() => LandingBloc());
+
   runApp(MyApp());
 }
 
@@ -45,13 +58,10 @@ class MyApp extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
       ),
-      home: BlocProvider(
-        create: (context) => LoginBloc(),
-        child: LoginPage(),
-      ),
+      home: LandingPage(),
       routes: {
-        //AppRoutes.AUTH_HOME: (ctx) => LoginPage(),
-        AppRoutes.VEHICLE_DETAIL: (ctx) => SecondPage(),
+        AppRoutes.LOGIN_HOME: (ctx) => LoginPage(),
+        AppRoutes.VEHICLE_DETAIL: (ctx) => VehiclesPage(),
       },
     );
   }
