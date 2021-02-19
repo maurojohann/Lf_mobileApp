@@ -8,8 +8,6 @@ import 'package:mobile_app/services/store.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
-import 'package:mobile_app/ui/models/auth_token.dart';
-import 'package:mobile_app/ui/models/vehicles.dart';
 import 'package:mobile_app/ui/repository/vehicles_repository.dart';
 
 part 'login_event.dart';
@@ -31,8 +29,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       try {
         yield LoginLoadingState();
 
-        var response = await http.post(urlToken,
-            body: {'username': event.username, 'password': event.password});
+        dynamic response =
+            await allVehicles.getUserAuthToken(event.username, event.password);
+
+        // var response = await http.post(urlToken,
+        //     body: {'username': event.username, 'password': event.password});
         if (response.statusCode == 200) {
           var jsonDecodes = convert.jsonDecode(response.body);
           await Store.saveString('Token', jsonDecodes['token']);

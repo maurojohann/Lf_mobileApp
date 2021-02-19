@@ -7,6 +7,7 @@ class Vehicles {
   String licensePlate;
   String type;
   LastPosition lastPosition;
+  bool isExpanded = false;
 
   Vehicles(
       {this.id,

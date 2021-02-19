@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mobile_app/routes/app_routes.dart';
 import 'package:mobile_app/services/store.dart';
 import 'package:mobile_app/ui/models/vehicles.dart';
+import 'package:mobile_app/ui/pages/Vehicles/build_panel.dart';
 import 'package:mobile_app/ui/repository/vehicles_repository.dart';
 
 class VehiclesPage extends StatefulWidget {
@@ -24,14 +25,15 @@ class _VehiclesPageState extends State<VehiclesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SecondPage'),
+        title: Text('Lista de Veiculos'),
       ),
-      body: ListView.builder(
-          itemCount: _listAllVehicles.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-                leading: Text(_listAllVehicles[index].id.toString()));
-          }),
+      body: SingleChildScrollView(
+        child: Container(
+          child: BuildPanel(
+            listAllVehicles: _listAllVehicles,
+          ),
+        ),
+      ),
       drawer: _buildDrawer(context),
     );
   }

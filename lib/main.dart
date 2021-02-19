@@ -11,6 +11,7 @@ import 'ui/pages/login/bloc/login_bloc.dart';
 import 'ui/pages/landing/bloc/landing_bloc.dart';
 import 'ui/pages/landing/landing_page.dart';
 import 'ui/pages/login/login_page.dart';
+import 'ui/pages/map/map_page.dart';
 import 'ui/repository/vehicles_repository.dart';
 
 void main() {
@@ -18,7 +19,8 @@ void main() {
   getIt.registerSingleton<VehiclesRepository>(VehiclesRepository());
   getIt.registerFactory<LoginBloc>(
       () => LoginBloc(getIt.get<VehiclesRepository>()));
-  getIt.registerFactory<LandingBloc>(() => LandingBloc());
+  getIt.registerFactory<LandingBloc>(
+      () => LandingBloc(getIt.get<VehiclesRepository>()));
 
   runApp(MyApp());
 }
