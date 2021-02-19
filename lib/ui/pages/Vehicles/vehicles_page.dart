@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobile_app/routes/app_routes.dart';
-import 'package:mobile_app/services/store.dart';
+
 import 'package:mobile_app/ui/models/vehicles.dart';
-import 'package:mobile_app/ui/pages/Vehicles/build_panel.dart';
+import 'package:mobile_app/ui/pages/Vehicles/widgets/build_panel.dart';
 import 'package:mobile_app/ui/repository/vehicles_repository.dart';
+import './widgets/build_drawer.dart';
 
 class VehiclesPage extends StatefulWidget {
   @override
@@ -14,6 +14,7 @@ class VehiclesPage extends StatefulWidget {
 class _VehiclesPageState extends State<VehiclesPage> {
   GetIt getIt;
   List<Vehicles> _listAllVehicles;
+
   @override
   void initState() {
     getIt = GetIt.I;
@@ -34,29 +35,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
           ),
         ),
       ),
-      drawer: _buildDrawer(context),
-    );
-  }
-
-  Widget _buildDrawer(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: [
-          AppBar(
-            title: Text('Menu'),
-            automaticallyImplyLeading: false,
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Sair'),
-            onTap: () {
-              Store.remove('Token');
-              Navigator.of(context).pushReplacementNamed(AppRoutes.LOGIN_HOME);
-            },
-          ),
-        ],
-      ),
+      drawer: BuildDrawer(),
     );
   }
 }

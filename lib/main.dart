@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get_it/get_it.dart';
 
-import 'package:mobile_app/routes/app_routes.dart';
-import 'package:mobile_app/ui/models/auth_token.dart';
-import 'package:mobile_app/ui/pages/Vehicles/vehicles_page.dart';
-
-import 'ui/models/vehicles.dart';
+import 'routes/app_routes.dart';
+import 'ui/pages/Vehicles/vehicles_page.dart';
 import 'ui/pages/login/bloc/login_bloc.dart';
 import 'ui/pages/landing/bloc/landing_bloc.dart';
 import 'ui/pages/landing/landing_page.dart';
 import 'ui/pages/login/login_page.dart';
-import 'ui/pages/map/map_page.dart';
 import 'ui/repository/vehicles_repository.dart';
 
 void main() {
@@ -32,7 +28,6 @@ class MyApp extends StatelessWidget {
     final primaryColorDark = Color(0xff13294B);
     final primaryColorLight = Color(0xff0575E6);
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primaryColorLight: primaryColorLight,
         primaryColorDark: primaryColorDark,

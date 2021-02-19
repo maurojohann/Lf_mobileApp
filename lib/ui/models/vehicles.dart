@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Vehicles {
   int id;
   Null model;

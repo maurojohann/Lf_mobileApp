@@ -1,17 +1,26 @@
-import 'package:mobile_app/repository/I_vehicles_repository.dart';
-import 'package:mobile_app/services/store.dart';
-import 'package:mobile_app/ui/models/vehicles.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+import '../models/vehicles.dart';
+import '../../repository/I_vehicles_repository.dart';
 
 class VehiclesRepository implements IVehiclesRepository {
   List<Vehicles> _listVehicles;
   bool _listVehiclesIsValid;
 
   @override
-  Future<void> saveAllVehicles(
+  Future<dynamic> getUserAuthToken(String username, String password) async {
+    const urlToken = 'https://rastrear.lftecnologia.com.br/api/auth/token/';
+
+    var response = await http
+        .post(urlToken, body: {'username': username, 'password': password});
+    return response;
+  }
+
+  @override
+  Future<void> getAllVehicles(
       Map<String, String> mapHeadresAutorization) async {
-    final urlVehicle = 'https://rastrear.lftecnologia.com.br/api/vehicles/';
+    const urlVehicle = 'https://rastrear.lftecnologia.com.br/api/vehicles/';
     var responseGet =
         await http.get(urlVehicle, headers: mapHeadresAutorization);
 
@@ -26,21 +35,7 @@ class VehiclesRepository implements IVehiclesRepository {
     return _listVehiclesIsValid;
   }
 
-  String get getStringAllVehicles {
-    String prints = _listVehicles.map((e) => jsonEncode(e)).toString();
-    return prints;
-  }
-
   List<Vehicles> get listAllVehicles {
-    return _listVehicles;
-  }
-
-  @override
-  Future<dynamic> getUserAuthToken(String username, String password) async {
-    var urlToken = 'https://rastrear.lftecnologia.com.br/api/auth/token/';
-
-    var response = await http
-        .post(urlToken, body: {'username': username, 'password': password});
-    return response;
+    return [..._listVehicles];
   }
 }

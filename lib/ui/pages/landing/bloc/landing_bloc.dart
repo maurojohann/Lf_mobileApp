@@ -16,19 +16,6 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
     this.allVehicles,
   ) : super(LandingInitialState());
 
-  // Future<SharedPreferences> _prefs =  SharedPreferences.getInstance();
-
-  // Future<void> devUser() async {
-  //    final SharedPreferences prefs = await _prefs;
-  //    if(prefs.containsKey('token')){
-  //    String user =  prefs.getString('token') ?? '';}
-
-  // }
-
-//  int counter = (prefs.getInt('counter') ?? 0) + 1;
-//   print('Pressed $counter times.');
-//   await prefs.setInt('counter', counter);
-
   @override
   Stream<LandingState> mapEventToState(
     LandingEvent event,
@@ -39,6 +26,7 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
 
     if (event is InitAppEvent) {
       yield InitializingAppState();
+
       await Future.delayed(Duration(seconds: 2));
 
       if (_prefs.containsKey('Token')) {
@@ -46,7 +34,7 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
           'Authorization': 'Token ' + await Store.getString('Token')
         };
 
-        await allVehicles.saveAllVehicles(mapHeadresAutorization);
+        await allVehicles.getAllVehicles(mapHeadresAutorization);
         isLogged = allVehicles.getVehiclesIsValid;
       } else {
         isLogged = false;
