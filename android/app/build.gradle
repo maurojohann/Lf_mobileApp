@@ -21,6 +21,19 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def dartEnvironmentVariables = [
+    MOBILE_APP_LFWEBTOKEN: 'http',
+    MOBILE_APP_API_KEY:'apikey',
+]
+if (project.hasProperty('dart-defines')) {
+    dartEnvironmentVariables = dartEnvironmentVariables + project.property('dart-defines')
+        .split(',')
+        .collectEntries { entry ->
+            def pair = URLDecoder.decode(entry).split('=')
+            [(pair.first()): pair.last()]
+        }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -43,6 +56,7 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders = [GOOGLE_API_KEY: dartEnvironmentVariables.MOBILE_APP_API_KEY]
     }
 
     buildTypes {

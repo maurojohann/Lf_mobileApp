@@ -23,6 +23,15 @@ No segundo acesso, o app verifica se já possui um token valido armazenado local
     google_maps_flutter: ^1.2.0
     flutter_dotenv: ^3.1.0
 
-# .env
-LFToken=
-LFVehicle=
+# Variaveis de ambiente
+    - Executar o flutter run--dart-define="MOBILE_APP_LFWEBTOKEN=http" --dart-define="MOBILE_APP_API_KEY=GoogleMapApiKey"
+    - Ou defina no lauch.json utilizando o VSCode, da seginte forma:
+     {
+            "name": "Flutter",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "args": ["--dart-define","MOBILE_APP_LFWEBTOKEN=YourUrl",
+            "--dart-define","MOBILE_APP_API_KEY=YourKey"
+            ]
+        },
