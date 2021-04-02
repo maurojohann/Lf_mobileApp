@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get_it/get_it.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 import 'routes/app_routes.dart';
 import 'ui/pages/Vehicles/vehicles_page.dart';
@@ -10,14 +11,15 @@ import 'ui/pages/landing/landing_page.dart';
 import 'ui/pages/login/login_page.dart';
 import 'ui/repository/vehicles_repository.dart';
 
-void main() {
+void main() async {
   GetIt getIt = GetIt.I;
   getIt.registerSingleton<VehiclesRepository>(VehiclesRepository());
   getIt.registerFactory<LoginBloc>(
       () => LoginBloc(getIt.get<VehiclesRepository>()));
   getIt.registerFactory<LandingBloc>(
       () => LandingBloc(getIt.get<VehiclesRepository>()));
-
+  await DotEnv.load(fileName: ".env");
+  
   runApp(MyApp());
 }
 
