@@ -18,7 +18,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
   @override
   void initState() {
     getIt = GetIt.I;
-    _listAllVehicles = getIt.get<VehiclesRepository>().listAllVehicles;
+    _listAllVehicles = getIt.get<LFVehiclesRepository>().listAllVehicles;
     super.initState();
   }
 

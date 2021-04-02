@@ -13,10 +13,10 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  VehiclesRepository allVehicles;
+  LFVehiclesRepository allVehicles;
   LoginBloc(this.allVehicles) : super(LoginInitial());
 
-  var urlToken = 'https://rastrear.lftecnologia.com.br/api/auth/token/';
+  //var urlToken = 'https://rastrear.lftecnologia.com.br/api/auth/token/';
 
   @override
   Stream<LoginState> mapEventToState(

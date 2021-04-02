@@ -11,7 +11,7 @@ part 'landing_event.dart';
 part 'landing_state.dart';
 
 class LandingBloc extends Bloc<LandingEvent, LandingState> {
-  VehiclesRepository allVehicles;
+  LFVehiclesRepository allVehicles;
   LandingBloc(
     this.allVehicles,
   ) : super(LandingInitialState());

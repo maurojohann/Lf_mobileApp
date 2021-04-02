@@ -13,13 +13,13 @@ import 'ui/repository/vehicles_repository.dart';
 
 void main() async {
   GetIt getIt = GetIt.I;
-  getIt.registerSingleton<VehiclesRepository>(VehiclesRepository());
+  getIt.registerSingleton<LFVehiclesRepository>(LFVehiclesRepository());
   getIt.registerFactory<LoginBloc>(
-      () => LoginBloc(getIt.get<VehiclesRepository>()));
+      () => LoginBloc(getIt.get<LFVehiclesRepository>()));
   getIt.registerFactory<LandingBloc>(
-      () => LandingBloc(getIt.get<VehiclesRepository>()));
+      () => LandingBloc(getIt.get<LFVehiclesRepository>()));
   await DotEnv.load(fileName: ".env");
-  
+
   runApp(MyApp());
 }
 
