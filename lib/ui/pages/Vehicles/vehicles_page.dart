@@ -3,7 +3,8 @@ import 'package:get_it/get_it.dart';
 
 import 'package:mobile_app/ui/models/vehicles.dart';
 import 'package:mobile_app/ui/pages/Vehicles/widgets/build_panel.dart';
-import 'package:mobile_app/ui/repository/vehicles_repository.dart';
+import 'package:mobile_app/ui/repository/firebase_repository.dart';
+
 import './widgets/build_drawer.dart';
 
 class VehiclesPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
   @override
   void initState() {
     getIt = GetIt.I;
-    _listAllVehicles = getIt.get<LFVehiclesRepository>().listAllVehicles;
+    _listAllVehicles = getIt.get<FireBaseRepository>().listAllVehicles;
     super.initState();
   }
 

@@ -2,16 +2,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:mobile_app/ui/repository/firebase_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:mobile_app/services/store.dart';
-import 'package:mobile_app/ui/repository/vehicles_repository.dart';
 
 part 'landing_event.dart';
 part 'landing_state.dart';
 
 class LandingBloc extends Bloc<LandingEvent, LandingState> {
-  LFVehiclesRepository allVehicles;
+  FireBaseRepository allVehicles;
   LandingBloc(
     this.allVehicles,
   ) : super(LandingInitialState());
@@ -31,9 +31,9 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
 
       if (_prefs.containsKey('Token')) {
         Map<String, String> mapHeadresAutorization = {
-          'Authorization': 'Token ' + await Store.getString('Token')
+          'Authorization': await Store.getString('Token')
         };
-
+        
         await allVehicles.getAllVehicles(mapHeadresAutorization);
         isLogged = allVehicles.getVehiclesIsValid;
       } else {

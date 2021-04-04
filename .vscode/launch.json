@@ -9,8 +9,13 @@
             "type": "dart",
             "request": "launch",
             "program": "lib/main.dart",
-            "args": ["--dart-define","MOBILE_APP_LFWEBTOKEN=YourUrlKey",
-            "--dart-define","MOBILE_APP_API_KEY=YourGoogleMasKey"
+            "args": ["--dart-define","LF_LFWEBTOKEN=ss",
+                "--dart-define","LF_MAP_KEY=<GOOGLE_MAP_API_KEY>",
+                "--dart-define","LF_URLTOKEN=https://rastrear.<API_LF>.com.br/api/auth/token/",
+                "--dart-define","LF_URLVEHICLE=https://rastrear.<API_LF>.com.br/api/vehicles/",
+                "--dart-define","LF_FBASE_KEY=<FIREBASE_API_KEY>",
+                "--dart-define","LF_FBASE_SIGNIN=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=",
+                "--dart-define","LF_FBASE_URLVEHICLE=https://<FIREBASE_DATABASE>.firebaseio.com/vehicles.json?auth="
             ]
         },
         {

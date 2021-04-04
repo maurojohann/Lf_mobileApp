@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import '../models/vehicles.dart';
 import '../../repository/I_vehicles_repository.dart';
 
@@ -12,7 +10,8 @@ class LFVehiclesRepository implements IVehiclesRepository {
 
   @override
   Future<dynamic> getUserAuthToken(String username, String password) async {
-    String urlToken = env['LFToken'];
+    const String urlToken =
+        const String.fromEnvironment("LF_URLTOKEN", defaultValue: "http");
 
     var response = await http
         .post(urlToken, body: {'username': username, 'password': password});
@@ -22,7 +21,7 @@ class LFVehiclesRepository implements IVehiclesRepository {
   @override
   Future<void> getAllVehicles(
       Map<String, String> mapHeadresAutorization) async {
-    String urlVehicle = env['LFVehicle'];
+    const String urlVehicle = const String.fromEnvironment("LF_URLVEHICLE");
     var responseGet =
         await http.get(urlVehicle, headers: mapHeadresAutorization);
 
